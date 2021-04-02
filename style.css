@@ -1,11 +1,14 @@
 #container {
   display: grid;
-  height: 20vw;
-  width: 20vw;
-  grid-template-columns: repeat(16, 1fr);
+  height: 30vw;
+  width: 30vw;
   grid-auto-rows: 20px;
 }
 
 .squares {
-  border: 0.1px solid black;
+  border: 0.1px solid grey;
+}
+
+#clear {
+  background-color: honeydew;
 }
