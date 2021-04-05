@@ -1,11 +1,13 @@
 let container = document.querySelector("#container");
-
-let input = 14;
+const clearBtn = document.querySelector("#clearBtn");
+const blackBtn = document.querySelector("#blackBtn");
+const eraserBtn = document.querySelector("#eraserBtn");
+const rainbowBtn = document.querySelector("#rainbowBtn");
 
 function random_bg_color() {
-  var x = Math.floor(Math.random() * 256);
-  var y = Math.floor(Math.random() * 256);
-  var z = Math.floor(Math.random() * 256);
+  const x = Math.floor(Math.random() * 256);
+  const y = Math.floor(Math.random() * 256);
+  const z = Math.floor(Math.random() * 256);
   var bgColor = "rgb(" + x + "," + y + "," + z + ")";
   return bgColor;
 }
@@ -13,39 +15,84 @@ function random_bg_color() {
 function etch(input) {
   for (i = 0; i < input ** 2; i++) {
     container.style.cssText = `grid-template-columns: repeat(${input}, 1fr); grid-template-rows: repeat(${input}, 1fr`;
-
     const grid = document.createElement("div");
     grid.classList.add("squares");
-
-    const rainbow = random_bg_color();
-
-    changeColor = () => {
-      grid.style.cssText = `background-color: ${rainbow}`;
-    };
-
-    grid.addEventListener("mouseenter", changeColor);
-
     container.appendChild(grid);
   }
 }
 
-removeGrid = () => {
-  for (i = 0; i < input ** 2; i++) {
-    let selectGrid = document.querySelector(".squares");
-    container.removeChild(selectGrid);
-  }
+etch(14);
+
+rainbowColor = () => {
+  const squares = container.querySelectorAll(".squares");
+  squares.forEach((squares) =>
+    squares.addEventListener("mouseover", () => {
+      squares.style.background = `${random_bg_color()}`;
+    })
+  );
 };
 
-function refresh() {
-  removeGrid();
-  let howManySquares = prompt("How many sqaures per side?", "");
-  let newInput = Number(howManySquares);
-  input = newInput;
-  etch(input);
-}
+rainbowColor();
 
-let restartbtn = document.querySelector(".restart-button");
+rainbowOn = () => {
+  rainbowBtn.addEventListener("click", rainbowColor);
+};
 
-restartbtn.addEventListener("click", refresh);
+rainbowOn();
 
-etch(input);
+blackColor = () => {
+  const squares = container.querySelectorAll(".squares");
+  blackBtn.addEventListener("click", () => {
+    squares.forEach((squares) =>
+      squares.addEventListener("mouseover", () => {
+        squares.style.background = `black`;
+      })
+    );
+  });
+};
+blackColor();
+
+eraserColor = () => {
+  const squares = container.querySelectorAll(".squares");
+  eraserBtn.addEventListener("click", () => {
+    squares.forEach((squares) =>
+      squares.addEventListener("mouseover", () => {
+        squares.style.background = `white`;
+      })
+    );
+  });
+};
+eraserColor();
+
+removeGrid = () => {
+  const squares = container.querySelectorAll(".squares");
+  squares.forEach((squares) => squares.remove());
+};
+
+clearOption = () => {
+  clearBtn.addEventListener("click", () => {
+    let howManySquares = prompt("How many squares per side?");
+    if (howManySquares === null || howManySquares < 1) {
+      removeGrid();
+      etch(14);
+      rainbowColor();
+      blackColor();
+      eraserColor();
+    } else if (howManySquares > 100) {
+      alert("Please enter a number less than 100.");
+      removeGrid();
+      etch(14);
+      rainbowColor();
+      blackColor();
+      eraserColor();
+    } else {
+      removeGrid();
+      etch(howManySquares);
+      rainbowColor();
+      blackColor();
+      eraserColor();
+    }
+  });
+};
+
+clearOption();

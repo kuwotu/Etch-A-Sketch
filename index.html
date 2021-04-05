@@ -3,14 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Etch-A-Sketch</title>
+    <script
+      src="https://kit.fontawesome.com/e5c8536330.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
+    <header>
+      <div class="header">
+        <h1>Etch-A-Sketch</h1>
+      </div>
+    </header>
     <main>
-      <button class="restart-button">Clear</button>
+      <div class="buttons-container">
+        <button type="button" id="clearBtn" class="button">Clear</button>
+        <button type="button" id="blackBtn" class="button">Black</button>
+        <button type="button" id="rainbowBtn" class="button">Rainbow</button>
+        <button type="button" id="eraserBtn" class="button">Eraser</button>
+      </div>
       <div id="container"></div>
     </main>
+    <footer>
+      <div class="footer">
+        <i class="fas fa-paint-brush"></i>
+        <p>Made by Kuwotu</p>
+        <i class="fas fa-paint-brush"></i>
+      </div>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>
